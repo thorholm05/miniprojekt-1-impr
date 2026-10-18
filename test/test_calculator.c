@@ -19,25 +19,96 @@ TEST_CASE(do_next_op_case0, {
  * Skriv dine egne unit test af 'do_next_op', så *
  * du tester forskellige operatorer og operander.*
  *************************************************/
+
+// Test af division med nul
 TEST_CASE(do_next_op_case1, {
-    /* Arrange */
+    double akkumulator = 10.0;
 
-    /* Act */
+    do_next_op('/', 0.0, &akkumulator);
 
-    /* Assert */
-
+    CHECK_EQ_DOUBLE(akkumulator, 10.0, delta);
 })
 
+// Test af kvadratrod af negativt tal
 TEST_CASE(do_next_op_case2, {
-    /* Arrange */
+    double akkumulator = -9.0;
 
-    /* Act */
+    do_next_op('#', 0.0, &akkumulator);
 
-    /* Assert */
-
+    CHECK_EQ_DOUBLE(akkumulator, -9.0, delta);
 })
-/* Tilføj gerne flere unit test. */
 
+// Test af multiplikation
+TEST_CASE(do_next_op_case3, {
+    double akkumulator = 5.0;
+
+    do_next_op('*', 3.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 15.0, delta);
+})
+
+// Test af division
+TEST_CASE(do_next_op_case4, {
+    double akkumulator = 12.0;
+
+    do_next_op('/', 4.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 3.0, delta);
+})
+
+// Test af potens
+TEST_CASE(do_next_op_case5, {
+    double akkumulator = 2.0;
+
+    do_next_op('^', 3.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 8.0, delta);
+})
+
+// Test af fortegnsskift
+TEST_CASE(do_next_op_case6, {
+    double akkumulator = 7.0;
+
+    do_next_op('%', 0.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, -7.0, delta);
+})
+
+// Test af reciprok værdi
+TEST_CASE(do_next_op_case7, {
+    double akkumulator = 4.0;
+
+    do_next_op('!', 0.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 0.25, delta);
+})
+
+// Test af reciprok værdi af nul
+TEST_CASE(do_next_op_case8, {
+    double akkumulator = 0.0;
+
+    do_next_op('!', 0.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 0.0, delta);
+})
+
+// Test af subtraktion
+TEST_CASE(do_next_op_case9, {
+    double akkumulator = 10.0;
+
+    do_next_op('-', 4.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 6.0, delta);
+})
+
+// Test af kvadratrod af positivt tal
+TEST_CASE(do_next_op_case10, {
+    double akkumulator = 9.0;
+
+    do_next_op('#', 0.0, &akkumulator);
+
+    CHECK_EQ_DOUBLE(akkumulator, 3.0, delta);
+})
 
 /* Her har underviseren implementeret regne-eksemplet fra opgavebeskrivelsen */
 TEST_CASE(do_next_op_example_sequence, {
@@ -71,4 +142,17 @@ TEST_CASE(do_next_op_example_sequence, {
 })
 
 /* Register your test cases to this macro: */
-MAIN_RUN_TESTS(do_next_op_case0, do_next_op_case1, do_next_op_case2, do_next_op_example_sequence)
+MAIN_RUN_TESTS(
+    do_next_op_case0,
+    do_next_op_case1,
+    do_next_op_case2,
+    do_next_op_case3,
+    do_next_op_case4,
+    do_next_op_case5,
+    do_next_op_case6,
+    do_next_op_case7,
+    do_next_op_case8,
+    do_next_op_case9,
+    do_next_op_case10,
+    do_next_op_example_sequence
+)
